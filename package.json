@@ -1,0 +1,28 @@
+{
+  "name": "svg",
+  "description": "An SVG Wrapper",
+  "version": "0.1.0",
+  "homepage": "https://github.com/alecmce/svg",
+  "author": {
+    "name": "Alec McEachran",
+    "url": "https://github.com/alecmce"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alecmce/svg.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alecmce/svg/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/alecme/svg/master/LICENSE-MIT"
+    }
+  ],
+  "main": "index.js",
+  "keywords": [
+    "svg",
+    "graphics"
+  ]
+}
