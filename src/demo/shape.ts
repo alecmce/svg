@@ -1,10 +1,10 @@
-import { XY, Point } from './lib/ds/xy';
-import { Path, PathConfig, MoveTo, QuadraticCurveTo, ClosePath } from './lib/svg/path';
+import { XY, Point } from '../lib/ds/xy';
+import { Path, PathConfig, MoveTo, QuadraticCurveTo, ClosePath } from '../lib/svg/path';
 import { Template } from './templates';
 
 export class Shape extends Path {
   constructor(
-    config: PathConfig,
+    config: PathConfig, 
     template: Template,
   ) {
     config.data = [

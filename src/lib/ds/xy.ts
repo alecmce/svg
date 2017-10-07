@@ -5,8 +5,8 @@ export interface XY {
 
 export class Point implements XY {
   constructor(
-    public x: number,
-    public y: number,
+    public x = 0,
+    public y = 0,
   ) { }
 
   clone() {

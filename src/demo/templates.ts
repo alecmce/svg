@@ -1,4 +1,4 @@
-import { XY, Point } from './lib/ds/xy';
+import { XY, Point } from '../lib/ds/xy';
 
 interface Anchors {
   top: Point;

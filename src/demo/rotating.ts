@@ -1,11 +1,11 @@
 import { Canvas } from '../lib/svg/canvas';
 import { Line } from '../lib/svg/line';
 import { Color } from '../lib/ds/color';
-import { Shape } from '../shape';
+import { Shape } from './shape';
 import { Tweens, TweenConfig } from '../lib/ds/tweens';
 import { Back, Bounce, Circ, Quad } from '../lib/ds/ease';
 import { XY, Point } from '../lib/ds/xy';
-import { TemplateFactory, Template, controls, blob, square, pin, eye, pie, bullet } from '../templates';
+import { TemplateFactory, Template, controls, blob, square, pin, eye, pie, bullet } from './templates';
 import { PathConfig } from '../lib/svg/path';
 import { Updater } from './updater';
 

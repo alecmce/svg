@@ -3,7 +3,7 @@ import { XY } from '../ds/xy';
 import { Proxy } from './interfaces';
 
 import {
-  PathData,
+  PathData as DsPathData,
   Path as DsPath,
   PathConfig as DsPathConfig,
   MoveBy as DsMoveBy,
@@ -18,6 +18,7 @@ import {
   ClosePath as DsClosePath,
 } from '../ds/path';
 
+export interface PathData extends DsPathData<string> { }
 export interface PathConfig extends DsPathConfig<string> { }
 
 export class Path extends DsPath<string> implements Proxy<SVGPathElement> {
