@@ -3,7 +3,7 @@ import { AxesConfig, Axes } from './axes';
 import { LineConfig, Line } from './line';
 import { XY, Point } from '../lib/ds/xy';
 import { Rect, Padding } from '../lib/ds/rect';
-import { Rgb } from '../lib/ds/color';
+import { Rgb } from '../lib/color/rgb';
 import { repeat } from '../lib/util';
 import { Model } from './model';
 
@@ -29,7 +29,7 @@ export function main() {
     stroke: new Rgb(255, 0, 0),
     width: 2,
   });
-  
+
   const canvas = new Canvas(document.body.querySelector('.main') as SVGSVGElement);
   canvas.append(axes);
   canvas.append(line);
@@ -66,7 +66,7 @@ function updateAxisPoints(bounds: Rect, points: [XY, XY, XY, XY]) {
   points[1].x = bounds.right;
   points[1].y = originY;
   points[2].x = originX;
-  points[2].y = bounds.bottom;    
+  points[2].y = bounds.bottom;
   points[3].x = bounds.left;
   points[3].y = originY;
 }

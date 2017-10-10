@@ -1,4 +1,4 @@
-import { Color } from '../lib/ds/color';
+import { Color } from '../lib/color/color';
 import { Rect } from '../lib/ds/rect';
 import { Point, XY } from '../lib/ds/xy';
 
@@ -8,7 +8,7 @@ import { repeat } from '../lib/util';
 export interface LineConfig {
   stroke?: Color,
   strokeDashArray?: number[],
-  width?: number, 
+  width?: number,
 }
 
 export type FourPoints = [XY, XY, XY, XY];
@@ -20,7 +20,7 @@ export class Line extends Path {
   ) {
     super({
       ...config,
-      data: [], 
+      data: [],
     });
   }
 

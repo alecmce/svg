@@ -1,4 +1,5 @@
-import { Color, NamedColor } from '../ds/color';
+import { Color } from '../color/color';
+import { NamedColor } from '../color/named';
 import { XY } from '../ds/xy';
 
 export interface PathData<T> {

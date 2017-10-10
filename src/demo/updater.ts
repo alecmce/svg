@@ -1,4 +1,5 @@
-import { Tweens, TweenConfig } from '../lib/ds/tweens';
+import { TweenConfig } from '../lib/tween/tween';
+import { Tweens } from '../lib/tween/tweens';
 import { Template } from './templates';
 
 export class Updater {

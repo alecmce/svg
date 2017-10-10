@@ -1,14 +1,11 @@
 import { Container } from '../ds/container';
 import { Proxy } from './interfaces';
 import { Signal } from '../ds/signal';
+import { Entity } from '../glue';
 
-export class Canvas implements Container {
-  readonly resize = new Signal<void>();
-
+export class Canvas implements Entity {
   readonly children = new Map<Proxy<any>, ChildData>();
-  constructor(private readonly element: SVGSVGElement) {
-    window.onresize = () => this.resize.emit();
-  }
+  constructor(private readonly element: SVGSVGElement) { }
 
   append(child: Proxy<any>) {
     if (!this.children.has(child)) this.children.set(child, new ChildData());

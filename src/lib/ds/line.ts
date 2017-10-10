@@ -1,4 +1,4 @@
-import { Color } from '../ds/color';
+import { Color } from '../color/color';
 import { XY } from '../ds/xy';
 
 export class Line {

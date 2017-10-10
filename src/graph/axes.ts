@@ -1,4 +1,4 @@
-import { Color } from '../lib/ds/color';
+import { Color } from '../lib/color/color';
 import { Rect } from '../lib/ds/rect';
 import { Point, XY } from '../lib/ds/xy';
 
@@ -8,7 +8,7 @@ import { repeat } from '../lib/util';
 export interface AxesConfig {
   stroke?: Color,
   strokeDashArray?: number[],
-  width?: number, 
+  width?: number,
 }
 
 export class Axes extends Path {
@@ -18,12 +18,12 @@ export class Axes extends Path {
   ) {
     super({
       ...config,
-      data: makePath(source), 
+      data: makePath(source),
     });
   }
 }
 
-function makePath(points: [XY, XY, XY, XY]): PathData[]  {
+function makePath(points: [XY, XY, XY, XY]): PathData[] {
   return [
     new MoveTo(points[0]),
     new LineTo(points[2]),

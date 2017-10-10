@@ -1,13 +1,14 @@
 import { Canvas } from '../lib/svg/canvas';
 import { Line } from '../lib/svg/line';
-import { Rgb } from '../lib/ds/color';
+import { Rgb } from '../lib/color/rgb';
 import { Shape } from './shape';
-import { Tweens } from '../lib/ds/tweens';
-import { Back, Bounce, Circ, Quad } from '../lib/ds/ease';
+import { Tweens } from '../lib/tween/tweens';
+import { Back, Bounce, Circ, Quad } from '../lib/tween/ease';
 import { XY, Point } from '../lib/ds/xy';
 import { TemplateFactory, Template, controls, blob, square, pin, eye, pie, bullet } from './templates';
 import { RotatingConfig, Rotating } from '../demo/rotating';
 import { SimpleConfig, Simple } from '../demo/simple';
+import { Glue } from '../lib/glue/glue';
 
 const DURATION = 1000;
 const DELAY = 250;
@@ -40,7 +41,7 @@ function updateSizeData() {
 export function shapesAndFillsDemo() {
   updateSizeData();
   const canvas = new Canvas(document.body.querySelector('.main') as SVGSVGElement);
-  const tweens = new Tweens(() => canvas.update());
+  const tweens = new Tweens();
 
   const simple = new Simple(canvas, {
     centers: CENTERS,
@@ -72,8 +73,5 @@ export function shapesAndFillsDemo() {
     },
   });
 
-  canvas.resize.add(() => {
-    updateSizeData();
-    simple.update();
-  });
+  canvas.resize.add(() => updateSizeData());
 };

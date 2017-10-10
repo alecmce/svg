@@ -1,3 +1,7 @@
+export interface Ease {
+  (p: number): number;
+}
+
 export class Back {
   static easeIn(p: number): number {
     return p * p * (2.70158 * p - 1.70158);
