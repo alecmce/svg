@@ -1,12 +1,21 @@
 export class Ticker {
   private isRunning = true;
+  private readonly updates = new Set<() => {}>();
   private readonly tick = () => this.iterate();
-  constructor(private readonly update: () => void) {
+  constructor() {
     requestAnimationFrame(this.tick);
   }
 
+  add(update: () => {}): void {
+    this.updates.add(update);
+  }
+
+  remove(update: () => {}) {
+    this.updates.delete(update);
+  }
+
   private iterate() {
-    this.update();
+    for (let update of this.updates) update();
     if (this.isRunning) requestAnimationFrame(this.tick);
   }
 

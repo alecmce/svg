@@ -1,9 +1,16 @@
 import { make } from './make';
-import { Line as DsLine } from '../ds/line';
+import { Color } from '../color/color';
 import { XY } from '../ds/xy';
 import { Proxy } from './interfaces';
 
-export class Line extends DsLine implements Proxy<SVGLineElement> {
+export class Line {
+  constructor(
+    public from?: XY,
+    public to?: XY,
+    public stroke?: Color,
+    public width = 2,
+  ) { }
+
   update(element?: SVGLineElement): SVGLineElement {
     const e = element || make<SVGLineElement>('line');
     draw(this, e);
