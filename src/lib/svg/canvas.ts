@@ -1,45 +1,39 @@
-import { Container } from '../ds/container';
-import { Proxy } from './interfaces';
-import { Signal } from '../ds/signal';
-import { Entity } from '../glue';
+import { Entity, Watch, Resolve } from '../powder/powder';
+import { Proxy } from './proxy';
 
-export class Canvas implements Entity {
-  readonly children = new Map<Proxy<any>, ChildData>();
-  constructor(private readonly element: SVGSVGElement) { }
+@Entity
+export class Canvas {
+  readonly element: SVGSVGElement;
+  private readonly past = new Set<Proxy<any>>();
 
-  append(child: Proxy<any>) {
-    if (!this.children.has(child)) this.children.set(child, new ChildData());
+  @Watch readonly children: Proxy<any>[];
+
+  constructor(
+    element: SVGSVGElement,
+  ) {
+    this.element = element;
   }
 
-  remove(child: Proxy<any>) {
-    if (this.children.has(child)) this.children.get(child).isDeleted = true;
+  @Resolve
+  resolve() {
+    const future = new Set<Proxy<any>>();
+    this.appendChildren(future);
+    this.removeChildren(this.past, future);
   }
 
-  update(): void {
-    this.children.forEach((data, child) => this.updateChild(child, data));
+  private appendChildren(future: Set<Proxy<any>>) {
+    this.children.forEach(child => {
+      future.add(child);
+      if (!this.past.has(child)) this.element.appendChild(child.element);
+    });
   }
 
-  private updateChild(child: Proxy<any>, data: ChildData) {
-    data.isDeleted ?
-      this.removeElementAndDeleteReference(child, data) :
-      this.updateAndAppendElementIfCreated(child, data);
+  private removeChildren(past: Set<Proxy<any>>, future: Set<Proxy<any>>) {
+    const missing = new Set<Proxy<any>>(this.past);
+    future.forEach(child => missing.delete(child));
+    missing.forEach(child => {
+      this.past.delete(child);
+      this.element.removeChild(child.element);
+    });
   }
-
-  private removeElementAndDeleteReference(child: Proxy<any>, data: ChildData) {
-    if (data.element) this.element.removeChild(data.element);
-    this.children.delete(child);
-  }
-
-  private updateAndAppendElementIfCreated(child: Proxy<any>, data: ChildData) {
-    const e = child.update(data.element);
-    if (!data.element) {
-      this.element.appendChild(e);
-      data.element = e;
-    }
-  }
-}
-
-class ChildData {
-  public element: SVGElement;
-  public isDeleted = false;
 }

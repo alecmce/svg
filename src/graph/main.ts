@@ -1,23 +1,23 @@
 import { Canvas } from '../lib/svg/canvas';
 import { AxesConfig, Axes } from './axes';
 import { LineConfig, Line } from './line';
-import { XY, Point } from '../lib/ds/xy';
+import { XY } from '../lib/ds/xy';
 import { Rect, Padding } from '../lib/ds/rect';
 import { Rgb } from '../lib/color/rgb';
 import { repeat } from '../lib/util';
 import { Model } from './model';
 
-const CENTER = new Point();
+const CENTER = new XY();
 const BOUNDS = new Rect();
 const PADDING = new Padding(30, 30, 30, 30);
 const AXIS_POINTS = makePoints();
 
 export function main() {
   const model = new Model(BOUNDS, [
-    new Point(0, 0),
-    new Point(10, 2),
-    new Point(20, 18),
-    new Point(30, 20),
+    new XY(0, 0),
+    new XY(10, 2),
+    new XY(20, 18),
+    new XY(30, 20),
   ]);
 
   const axes = new Axes(model.axis, {
@@ -45,7 +45,7 @@ export function main() {
 }
 
 function makePoints(): [XY, XY, XY, XY] {
-  return repeat<XY>(4, () => new Point(0, 0)) as [XY, XY, XY, XY]
+  return repeat<XY>(4, () => new XY(0, 0)) as [XY, XY, XY, XY]
 }
 
 function onResize() {

@@ -1,15 +1,16 @@
-export interface XY {
-  x: number;
-  y: number;
-}
+import { Entity, Watch } from '../powder';
 
-export class Point implements XY {
-  constructor(
-    public x = 0,
-    public y = 0,
-  ) { }
+@Entity
+export class XY {
+  @Watch x: number;
+  @Watch y: number;
+
+  constructor(x: number = 0, y: number = 0) {
+    this.x = x;
+    this.y = y;
+  }
 
   clone() {
-    return new Point(this.x, this.y);
+    return new XY(this.x, this.y);
   }
 }

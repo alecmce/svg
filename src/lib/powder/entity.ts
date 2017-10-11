@@ -1,15 +1,18 @@
-import 'reflect-metadata';
-
-/** Updates the object passed in, if it's an @Entity. */
+/** Updates the object if it's an @Entity. */
 export function update(entity: any) {
   if (entity.__isChanged && entity.__update && entity.__isChanged()) {
     entity.__update();
   }
 }
 
-/** Returns whether the object passed in is a changed @Entity. */
+/** Returns whether the object is a changed @Entity. */
 export function isChanged(entity: any): boolean {
   return entity.__isChanged && entity.__isChanged();
+}
+
+/** @returns whether the obejct is an @Entity */
+export function isEntity(entity: any): entity is EntityInstance {
+  return !!(entity.__isChanged && entity.__update);
 }
 
 /**
@@ -30,7 +33,7 @@ export function Resolve(target: any, key: string, descriptor: any) {
 }
 
 export interface EntityInstance {
-  __resolves: Array<() => {}>
+  __resolves?: Array<() => {}>
   __isChanged(): boolean;
   __update(): void;
 }

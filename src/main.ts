@@ -1,4 +1,4 @@
-import { Glue } from './lib/glue/glue';
+import { Powder } from './lib/powder';
 import { shapesAndFillsDemo } from './demo/shapes_and_fills';
 import { main } from './graph/main';
 
